@@ -1,0 +1,21 @@
+#LaTeX files ignored
+*.abs
+*.aux
+*.docx
+*.log
+*.idx
+*.lot
+*.bbl
+*.spl
+*.blg
+*.out
+*.gz
+*.toc
+*.lof
+*.pdf
+*.fdb_latexmk
+*.fls
+BibFiles
+.DS_Store
+.*.swp
+*.synctex(busy)
