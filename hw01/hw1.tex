@@ -241,7 +241,9 @@
 		\end{soln}
 		
 		\item 	$f(n) = n!$, $g(n) = 2^n$.\\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		The growth rate of $f(n)$ is greater than $g(n)$ when $n$ is large \\
+		$\Rightarrow g(n) = O(f(n)) $ since $f(n)$ provides upper bounds for $g(n)$ for large $n$; and hence  $f(n) \neq O(g(n))$ \end{soln}
 	\end{enumerate}
 	
 	
@@ -253,21 +255,46 @@
 	State true or false. Here $\Omega$ denotes the sample space and $A^c$ denotes the complement of the event $A$.
 	\begin{enumerate}
 		\item For any $A, B \subseteq \Omega$, $P(A|B)P(A) = P(B|A)P(B)$.\\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			It is a True statement. \\
+		Known that: $P(A \cap B) = P(A|B) P(B) = P(B|A) P(A) \Rightarrow P(A|B) = \frac{P(A \cap B)}{P(A)}; P(B|A) = \frac{P(A \cap B)}{P(B)}$\\
+		$P(A|B)P(A) = P(A \cap B) = P(B|A)P(B)$
+		\end{soln}
 		
 		\item For any $A, B \subseteq \Omega$, $P(A \cup B) = P(A) + P(B) - P(B \cap A)$.\\         
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			It is a True statement. \\
+		$P(A \cup B) = P(A) + P(B) - P(A \cap B)$\\
+		Which could be interpreted by definition: probability of $A$ or $B$ is the sum of probability of $A$ and $B$ minus the probability of $A$ and $B$ both happen ($A$ and $B$ both happen is the "intersection" part).
+		\end{soln}
 		
 		\item For any $A, B, C \subseteq \Omega$ such that $P(B \cup C) > 0$,
 		$\frac{P(A \cup B \cup C)}{P(B \cup C)} \geq P(A | B \cup C) P(B)$.\\ 
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		It is a True statement. \\
+		$LHS = \frac{P(A \cup B \cup C)}{P(B \cup C)}, \;\;\; RHS = P(A|B \cup C) P(B) =\frac{P(A \cap (B \cup C)) P(B)}{P(B \cup C)}\;\;$ since denominators are the same for RHS and LHS, we only need to compare the numerators\\
+		Assume: $B \cup C = D$\\
+		$P(A \cap (B \cup C)) = P(A \cap D) \leq P(A)$\\
+		$P(A \cup (B \cup C)) = P(A \cup D) \geq P(A)$\\
+		$\Rightarrow P(A \cap D) \leq P(A \cup D) \Rightarrow P(A \cap (B \cup C)) \leq P(A \cup (B \cup C))$\\
+		since $0 \leq P(B) \leq 1 \Rightarrow P(A \cup (B \cup C)) \geq P(A \cap (B \cup C)) P(B)\Rightarrow LHS \geq RHS$\\
+		\end{soln}
 		
 		\item For any $A, B\subseteq\Omega$ such that $P(B) > 0, P(A^c) > 0$,
 		$P(B|A^C) + P(B|A) = 1$.\\ 
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		It is a False statement. \\
+		By total probability law: $P(B) = P(A^c)P(B|A^c) + P(A)P(B|A) $\\
+		We can find a counterexample while $P(B) > 0, P(A^c) > 0$ and $P(A) > 0$ which will make $P(B|A^C) + P(B|A) \neq 1$\\
+		\end{soln}
 		
 		\item If $A$ and $B$ are independent events, then $A^{c}$ and $B^{c}$ are independent.\\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			It is a True statement. \\
+		$A$ and $b$ are independent events $\Rightarrow P(A \cap B) = P(A)P(B)$\\
+		$P(A^c \cap B^c) = P((A \cup B)^c) = 1 - P(A \cup B) = 1 - (P(A)+P(B)- P(A \cap B)) = 1 - P(A) - P(B) + P(A)P(B) = (1-P(A))(1-P(B)) = P(A^c)P(B^c)$\\
+		Therefore, $A^c$ and $B^c$ are independent events.
+		\end{soln}
 		
 	\end{enumerate}
 	
@@ -276,11 +303,11 @@
 	function. Below, $|\xv| = k$.
 	\begin{enumerate}[(a)]
 		\begin{minipage}{0.3\linewidth}
-			\item Gamma \begin{soln}  Solution goes here. \end{soln}
-			\item Multinomial  \begin{soln}  Solution goes here. \end{soln}
-			\item Laplace \begin{soln}  Solution goes here. \end{soln}
-			\item Poisson \begin{soln}  Solution goes here. \end{soln}
-			\item Dirichlet  \begin{soln}  Solution goes here. \end{soln}
+			\item Gamma \begin{soln}  (j) \end{soln}
+			\item Multinomial  \begin{soln}  (g) \end{soln}
+			\item Laplace \begin{soln}  (h) \end{soln}
+			\item Poisson \begin{soln}  (l) \end{soln}
+			\item Dirichlet  \begin{soln}  (k) \end{soln}
 			
 		\end{minipage}
 		\begin{minipage}{0.5\linewidth}
@@ -309,20 +336,30 @@
 		distribution: $X \sim \text{Binomial}(n, p)$.
 		\begin{enumerate}
 			\item What is the mean of the random variable?\\
-			\begin{soln}  Solution goes here. \end{soln}
+			\begin{soln}\\
+			$\mathbb{E}(x) = np$
+			\end{soln}
 			\item What is the variance of the random variable?\\
-			\begin{soln}  Solution goes here. \end{soln}
+			\begin{soln}  \\
+				$Var(x) = np(1-p)$
+			\end{soln}
 		\end{enumerate}
 		
 		\item Let $X$ be a random variable and
 		$\mathbb{E}[X] = 1, \Var(X) = 1$. Compute the following values:
 		\begin{enumerate}
 			\item $\mathbb{E}[5X]$\\
-			\begin{soln}  Solution goes here. \end{soln}
+			\begin{soln}\\
+			$\mathbb{E}(5X) = 5$
+			\end{soln}
 			\item $\Var(5X)$\\
-			\begin{soln}  Solution goes here. \end{soln}
+			\begin{soln}\\
+			$Var(5X) = 25$
+			\end{soln}
 			\item $\Var(X+5)$\\
-			\begin{soln}  Solution goes here. \end{soln}
+			\begin{soln}\\
+			$Var(X+5) = Var(X) = 1$
+			\end{soln}
 		\end{enumerate}
 	\end{enumerate}
 	
@@ -333,26 +370,34 @@
 		\item (3 pts) If $X$ and $Y$ are independent random variables, show that
 		$\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$.
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		By definition: $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$
+		\end{soln}
 		
 		\item (3 pts) If $X$ and $Y$ are independent random variables, show that
 		$\Var(X+Y) = \Var(X) + \Var(Y)$. \\
 		Hint: $\Var(X+Y) = \Var(X) + 2\Cov(X, Y) + \Var(Y)$
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			$\Var(X+Y) = \Var(X) + 2\Cov(X, Y) + \Var(Y)$ \\
+			for independent variables: $\mathbb{E}(XY) = \mathbb{E}(X) \mathbb{E}(Y) \Rightarrow \Var(X+Y) = \Var(X) + 2(\mathbb{E}(XY) - \mathbb{E}(X)\mathbb{E}(Y)) + \Var(Y) = \Var(X) + \Var(Y)$   \\
+		\end{soln}
 		
 		\item (6 pts) If we roll two dice that behave independently of each
 		other, will the result of the first die tell us something about the
 		result of the second die? 
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		No, because definition of independent events is the result of them doesn't depend on each others\end{soln}
 		
 		If, however, the first die's result is a 1,
 		and someone tells you about a third event --- that the sum of the two
 		results is even --- then given this information is the result of the second die
 		independent of the first die? 
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		Yes, in this case, if the sum of the first two dices is even which could be ${2,4,6,8,10,12}$, and I know the first dice's result is 1, then the second dice's result can only be ${1,3,5}$, which means the result of the second dice is dependent on the first dice's result.
+		\end{soln}
 	\end{enumerate}
 	
 	\subsection{Central Limit Theorem [3 pts]}
@@ -361,7 +406,11 @@
 		\item Let $X_i\sim\mathcal{N}(0, 1)$ and $\bar{X} = \frac{1}{n}\sum_{i=1}^n X_i$, then the distribution of $\bar{X}$ satisfies 
 		$$\sqrt{n}\bar{X}\overset{n\rightarrow\infty}{\longrightarrow}\mathcal{N}(0, 1)$$
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		$\mathbb{E}(\sqrt{n}\bar{X}) = \sqrt{n} \frac{1}{n}\sum_{i=1}^n \mathbb{E}(X_i) = 0$\\ 
+		$\Var(\sqrt{n}\bar{X}) = \sqrt{n}^2 \frac{1}{n^2}\sum_{i=1}^n \Var(X_i) = \frac{1}{n} n = 1 \Rightarrow \sigma(\bar{X}) = 1$\\
+		As $n$ becomes large, $\sqrt{n}\bar{X}$ will converge to $\mathcal{N}(0, 1)$ according to the central limit theorem.
+		\end{soln}
 		
 	\end{enumerate}
 	
@@ -376,46 +425,44 @@
 		\item 	$||\mathbf{x}||_1\leq 1$ (Recall that $||\mathbf{x}||_1 = \sum_i |x_i|$)
 
 	\begin{soln}
-	    Solution figure goes here.\\
+		%Solution figure goes here.\\
 	    % add figure filename, and remove % 
 	    %    (this can be done by highlighting text and pressing "cmd + /" for sharelatex+mac)
-	   % \begin{figure}[h!]
-	   %     \centering
-	   %     \includegraphics[width=0.4\textwidth]{FIGURE_FILENAME.pdf}  
-	   %             % reference folder/figure.pdf here and adjust width
-	   %     \captionsetup{labelformat=empty}
-	   %     \caption{}
-	   %     \label{fig:my_label}
-	   % \end{figure}
+	   \begin{figure}[h!]
+	       \centering
+	       \includegraphics[width=0.4\textwidth]{images/l1.png}  
+	               % reference folder/figure.pdf here and adjust width
+	       \captionsetup{labelformat=empty}
+	       \caption{$||\mathbf{x}||_1\leq 1$}
+	       \label{fig:l1}
+	   \end{figure}
 	\end{soln}
 		
 		\item 	$||\mathbf{x}||_2 \leq 1$ (Recall that $||\mathbf{x}||_2 =\sqrt{\sum_i x_i^2}$)
 			\begin{soln}
-			Solution figure goes here.\\
 			% add figure filename, and remove % 
 			%    (this can be done by highlighting text and pressing "cmd + /" for sharelatex+mac)
-			% \begin{figure}[h!]
-			%     \centering
-			%     \includegraphics[width=0.4\textwidth]{FIGURE_FILENAME.pdf}  
-			%             % reference folder/figure.pdf here and adjust width
-			%     \captionsetup{labelformat=empty}
-			%     \caption{}
-			%     \label{fig:my_label}
-			% \end{figure}
+			\begin{figure}[h!]
+			    \centering
+			    \includegraphics[width=0.4\textwidth]{images/l2.png}  
+			            % reference folder/figure.pdf here and adjust width
+			    \captionsetup{labelformat=empty}
+			    \caption{$||\mathbf{x}||_2 \leq 1$}
+			    \label{fig:l2}
+			\end{figure}
 		\end{soln}
 		\item 	$||\mathbf{x}||_\infty \leq 1$ (Recall that $||\mathbf{x}||_\infty = \max_i |x_i|$)
 			\begin{soln}
-			Solution figure goes here.\\
 			% add figure filename, and remove % 
 			%    (this can be done by highlighting text and pressing "cmd + /" for sharelatex+mac)
-			% \begin{figure}[h!]
-			%     \centering
-			%     \includegraphics[width=0.4\textwidth]{FIGURE_FILENAME.pdf}  
-			%             % reference folder/figure.pdf here and adjust width
-			%     \captionsetup{labelformat=empty}
-			%     \caption{}
-			%     \label{fig:my_label}
-			% \end{figure}
+			\begin{figure}[h!]
+			    \centering
+			    \includegraphics[width=0.4\textwidth]{images/l3.png}  
+			            % reference folder/figure.pdf here and adjust width
+			    \captionsetup{labelformat=empty}
+			    \caption{$||\mathbf{x}||_\infty \leq 1$}
+			    \label{fig:l3}
+			\end{figure}
 		\end{soln}
 	\end{enumerate}
 	
@@ -425,10 +472,16 @@
 	\end{pmatrix}$, Calculate the following norms.
 	\begin{enumerate}\addtocounter{enumi}{3}
 		\item $||M||_{2}$ (L2 norm) \\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			$||M||_2 = \sqrt{\lambda_{max}(M^TM)} = \sqrt{\lambda_{max}(M^2)} = \sqrt{\lambda_{max}(\begin{pmatrix}
+				25 & 0 & 0 \\ 0 & 49 & 0 \\ 0 & 0 & 9
+			\end{pmatrix})} = \sqrt{49} = 7$
+		\end{soln}
 		
 		\item $||M||_{F}$ (Frobenius norm)\\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+			$||M||_F  = \sqrt{\sum M_{i,j}} = \sqrt{25+49+9} = \sqrt{83}$
+		\end{soln}
 		
 		
 	\end{enumerate}
@@ -439,11 +492,16 @@
 	Prove the following.  Provide all steps.
 	\begin{enumerate}
 		\item 	The smallest Euclidean distance from the origin to some point $\mathbf{x}$ in the hyperplane $\mathbf{w}^{T}\mathbf{x} + b = 0$ is $\frac{|b|}{||\mathbf{w}||_2}$.  You may assume $\mathbf{w} \neq 0$.\\
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		The minimum distance from the origin to a point $\mathbf{x}$ is $d = ||proj_\omega \mathbf{(0 - x)}||_2 \;\; s.t. -\mathbf{w}^{T}\mathbf{x} = b  \Rightarrow d = ||\frac{-\mathbf x \cdot \mathbf{\omega}}{\mathbf\omega \cdot \mathbf\omega} \mathbf\omega|| = \frac{|b|}{||\mathbf{\omega}||_2}$.\\
+		\end{soln}
 		
 		\item 	The Euclidean distance between two parallel hyperplane $\mathbf{w}^{T}\mathbf{x} + b_1 = 0$ and $\mathbf{w}^{T}\mathbf{x} + b_2 = 0$ is $\frac{|b_1 - b_2|}{||\mathbf{w}||_2}$ (Hint: you can use the result from the last question to help you prove this one).
 		
-		\begin{soln}  Solution goes here. \end{soln}
+		\begin{soln}\\
+		From last question: we can obtain: $d_1 = \frac{|b_1|}{||\mathbf{w}||_2}$ and $d_2 = \frac{|b_2|}{||\mathbf{w}||_2}$ where $d_1$ and $d_2$ are the distances from hyperplanes to origin.\\
+		Assume distance between these two hyperplane is: $d = d_1 - d_2 = \frac{|b_1|}{||\mathbf{w}||_2} - \frac{|b_2|}{||\mathbf{w}||_2} = \frac{|b_1 - b_2|}{||\mathbf{w}||_2}$\\
+		\end{soln}
 		
 	\end{enumerate}
 	
@@ -455,17 +513,17 @@
 		\item Make a scatter plot by drawing 100 items from a two dimensional Gaussian $N((1, -1)^{T}, 2I)$, where I is an identity matrix in $\mathbb{R}^{2 \times 2}$.
 		
 			\begin{soln}
-			Solution figure goes here.\\
+			% Solution figure goes here.\\
 			% add figure filename, and remove % 
 			%    (this can be done by highlighting text and pressing "cmd + /" for sharelatex+mac)
-			% \begin{figure}[h!]
-			%     \centering
-			%     \includegraphics[width=0.4\textwidth]{FIGURE_FILENAME.pdf}  
-			%             % reference folder/figure.pdf here and adjust width
-			%     \captionsetup{labelformat=empty}
-			%     \caption{}
-			%     \label{fig:my_label}
-			% \end{figure}
+			\begin{figure}[h!]
+			    \centering
+			    \includegraphics[width=0.25\textwidth]{images/2d_gaussian.png}  
+			            % reference folder/figure.pdf here and adjust width
+			    \captionsetup{labelformat=empty}
+			    \caption{2D Gaussian Distribution}
+			    \label{fig:2dgaussian}
+			\end{figure}
 		\end{soln}
 	
 		\item Make a scatter plot by drawing 100 items from a mixture distribution 
@@ -474,17 +532,17 @@
 		$.
 		
 		\begin{soln}
-		Solution figure goes here.\\
+		% Solution figure goes here.\\
 		% add figure filename, and remove % 
 		%    (this can be done by highlighting text and pressing "cmd + /" for sharelatex+mac)
-		% \begin{figure}[h!]
-		%     \centering
-		%     \includegraphics[width=0.4\textwidth]{FIGURE_FILENAME.pdf}  
-		%             % reference folder/figure.pdf here and adjust width
-		%     \captionsetup{labelformat=empty}
-		%     \caption{}
-		%     \label{fig:my_label}
-		% \end{figure}
+		\begin{figure}[h!]
+		    \centering
+		    \includegraphics[width=0.25\textwidth]{images/2d_sumdata.png}  
+		            % reference folder/figure.pdf here and adjust width
+		    \captionsetup{labelformat=empty}
+		    \caption{2D Mixture Distribution}
+		    \label{fig:mixdist}
+		\end{figure}
 	\end{soln}
 	\end{enumerate}
 	
