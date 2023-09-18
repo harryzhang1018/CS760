@@ -165,7 +165,7 @@
 				\end{soln}
 		\item 	Is $X$ invertible? If so, give the inverse, and if no, explain why not.\\
 		        \begin{soln}  
-				$det(X) = 3 (-5) + (-2)7 = -29 <0$ \\
+				$det(X) = 3 (-5) - (-2)7 = -1 <0$ \\
 				$X$ is invertible because the determinant of $X$ is not zero.
 				\end{soln}
 	\end{enumerate}
@@ -175,7 +175,7 @@
 	\begin{enumerate}
 		\item If $y = e^{-x} + \arctan(z)x^{6/z} - \ln\cfrac{x}{x+1}$, what is the partial derivative of $y$ with respect to $x$?\\
 		\begin{soln}\\  
-		$\frac{dy}{dx} = -e^-x + \frac{6\cdot \arctan(z)}{z} \cdot x^{\frac{6-z}{z}}+\frac{1}{x(x+1)}$ 
+		$\frac{dy}{dx} = -e^{-x} + \frac{6\cdot \arctan(z)}{z} \cdot x^{\frac{6-z}{z}}+\frac{1}{x(x+1)}$ 
 		\end{soln}
 	\end{enumerate}
 	
@@ -212,7 +212,7 @@
 		\end{table}
 		\begin{enumerate}
 			\item 	What is $P(A = 0 | B = 1)$?\\
-			 \begin{soln}  See table: $P(A=0 | B=1) = 0.1$ \end{soln}
+			 \begin{soln}  See table: $P(A=0 | B=1) =\frac{P(\text{while B is 1, A is 0})}{P(\text{B is 1})}= \frac{1}{6}$ \end{soln}
 			 
 			\item 	What is $P(A = 1 \vee B = 1 )$?\\
 		    \begin{soln}
@@ -256,9 +256,9 @@
 	\begin{enumerate}
 		\item For any $A, B \subseteq \Omega$, $P(A|B)P(A) = P(B|A)P(B)$.\\
 		\begin{soln}\\
-			It is a True statement. \\
-		Known that: $P(A \cap B) = P(A|B) P(B) = P(B|A) P(A) \Rightarrow P(A|B) = \frac{P(A \cap B)}{P(A)}; P(B|A) = \frac{P(A \cap B)}{P(B)}$\\
-		$P(A|B)P(A) = P(A \cap B) = P(B|A)P(B)$
+			It is a False statement. \\
+		Known that: $P(A \cap B) = P(A|B) P(B) = P(B|A) P(A)$ \\
+		However, we want to prove: $P(A|B)P(A) = P(B|A)P(B)$, which isn't true because $P(A|B) \neq P(B|A)$ in general.\\
 		\end{soln}
 		
 		\item For any $A, B \subseteq \Omega$, $P(A \cup B) = P(A) + P(B) - P(B \cap A)$.\\         
@@ -304,7 +304,7 @@
 	\begin{enumerate}[(a)]
 		\begin{minipage}{0.3\linewidth}
 			\item Gamma \begin{soln}  (j) \end{soln}
-			\item Multinomial  \begin{soln}  (g) \end{soln}
+			\item Multinomial  \begin{soln}  (i) \end{soln}
 			\item Laplace \begin{soln}  (h) \end{soln}
 			\item Poisson \begin{soln}  (l) \end{soln}
 			\item Dirichlet  \begin{soln}  (k) \end{soln}
@@ -371,7 +371,7 @@
 		$\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$.
 		
 		\begin{soln}\\
-		By definition: $\mathbb{E}[XY] = \mathbb{E}[X]\mathbb{E}[Y]$
+		By definition: $\mathbb{E}[XY] = \sum_x \sum_y x y \cdot P(X=x,Y=y) = \sum_x \sum_y x y \cdot P(X=x) \cdot P(Y=y)= \sum_x \cdot P(X=x) \sum_y y \cdot P(Y=y)  = \mathbb{E}[X]\mathbb{E}[Y]$
 		\end{soln}
 		
 		\item (3 pts) If $X$ and $Y$ are independent random variables, show that
