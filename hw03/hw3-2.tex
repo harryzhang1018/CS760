@@ -134,15 +134,23 @@ Use this latex file as a template to develop your homework. Submit your homework
 \begin{enumerate}
 	\item (3 pts) We collect a set of data on the top 500 firms in the US. For each firm we record profit, number of employees, industry and the CEO salary. We are interested in predicting CEO salary with given factors.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln} \\
+	This is a regression because we are trying to give prediction whose output is in continuous space. \\
+	Number of data: 500; Number of features: 3 (profit, number of employees, industry) \end{soln}
 	
 	\item (3 pts) We are considering launching a new product and wish to know whether it will be a success or a failure. We collect data on 20 similar products that were previously launched. For each product we have recorded whether it was a success or failure, price charged for the product, marketing budget, competition price, and ten other variables.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	This is the classification problem because we are trying to predict the output in discrete space (either this product will be success or failure)\\
+	Number of data: 20; Number of features: 13 (price charged for the product, marketing budget, competition price, and ten other variables)
+	\end{soln}
 	
 	\item (3 pts) We are interesting in predicting the \% change in the US dollar in relation to the weekly changes in the world stock markets. Hence we collect weekly data for all of 2012. For each week we record the \% change in the dollar, the \% change in the US market, the \% change in the British market, and the \% change in the German market.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	This is a regression problem because we are trying to predict the output in continuous space (percentage change in dollar).\\
+	Number of data: 52 (Assume: 4 weeks/month and 12 months in 2012); Number of features: 3 (\% change in the US market, the \% change in the British market, and the \% change in the German market)
+	\end{soln}
 	
 \end{enumerate}
 
@@ -167,15 +175,35 @@ Suppose we wish to use this data set to make a prediction for $Y$ when $X_{1} = 
 \begin{enumerate}
 	\item (2 pts) Compute the Euclidean distance between each observation and the test point, $X_{1} = X_{2} = X_{3}=0$.
  
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	If we using Euclidean distance, then the distance between each observation and the test point is in the following chart: \\
+	\begin{center}
+		\begin{tabular}{ c  c  c  c}
+			\hline
+			$X_{1}$ & $X_{2}$ & $X_{3}$ & Distance to point $(X_{1}=X_{2}=X_{3}=0)$ \\ \hline
+			0 & 3 & 0 & 3 \\
+			2 & 0 & 0 & 2 \\
+			0 & 1 & 3 & $\sqrt{10}$ \\
+			0 & 1 & 2 & $\sqrt{5}$ \\
+			-1 & 0 & 1 & $\sqrt{2}$ \\
+			1 & 1 & 1 & $\sqrt{3}$  \\
+			\hline
+		\end{tabular}
+	\end{center}
+	
+	\end{soln}
  
 	\item (2 pts) What is our prediction with $K=1$? Why?
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	If we use $K=1$, then the prediction is Green because the nearest point is the fifth observation $(X_1 =-1, X_2 = 0, X_3 = 1)$, which is Green. \\
+	\end{soln}
 	
 	\item (2 pts) What is our prediction with $K=3$? Why?
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	If we use $K=3$, then the prediction is Red because the nearest three points are the fifth observation $(X_1 =-1, X_2 = 0, X_3 = 1)$, the sixth observation $(X_1 =1, X_2 = 1, X_3 = 1)$, and the second observation $(X_1 =2, X_2 = 0, X_3 = 0)$, which are two Red and one Green (Red is dominate prediction here).
+	\end{soln}
 
 \end{enumerate}
 
@@ -184,24 +212,34 @@ Suppose we wish to use this data set to make a prediction for $Y$ when $X_{1} = 
 \begin{enumerate}
 	\item (2pts) Suppose that we have a set of observations, each with measurements on $p=1$ feature, $X$. We assume that $X$ is uniformly (evenly) distributed on [0, 1]. Associated with each observation is a response value. Suppose that we wish to predict a test observation’s response using only observations that are within 10\% of the range of $X$ closest to that test observation. For instance, in order to predict the response for a test observation with $X=0.6$, we will use observations in the range [0.55, 0.65]. On average, what fraction of the available observations will we use to make the prediction?
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Since the total range of $X$ is 1, and we only use 10\% of the range of $X$ closest to the test observation, then the range of $X$ we use is 0.1. Therefore, the fraction of the available observations will we use to make the prediction is 0.1.
+	\end{soln}
 	
 	
 	\item (2pts) Now suppose that we have a set of observations, each with measurements on $p =2$ features, $X1$ and $X2$. We assume that predict a test observation’s response using only observations that $(X1,X2)$ are uniformly distributed on [0, 1] × [0, 1]. We wish to are within 10\% of the range of $X1$ and within 10\% of the range of $X2$ closest to that test observation. For instance, in order to predict the response for a test observation with $X1 =0.6$ and $X2 =0.35$, we will use observations in the range [0.55, 0.65] for $X1$ and in the range [0.3, 0.4] for $X2$. On average, what fraction of the available observations will we use to make the prediction?
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Based on answer in part (a), we know that the fraction of the available observations will we use to make the prediction for $X1$ is 0.1. Similarly, the fraction of the available observations will we use to make the prediction for $X2$ is 0.1. Therefore, the fraction of the available observations will we use to make the prediction for $(X1,X2)$ is $0.1^2 = 0.01$.
+	\end{soln}
 	
 	\item (2pts) Now suppose that we have a set of observations on $p = 100$ features. Again the observations are uniformly distributed on each feature, and again each feature ranges in value from 0 to 1. We wish to predict a test observation’s response using observations within the 10\% of each feature’s range that is closest to that test observation. What fraction of the available observations will we use to make the prediction?
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Since the total range of each feature is 1, and we only use 10\% of the range of each feature closest to the test observation, then the range of each feature we use is 0.1. Therefore, the fraction of the available observations will we use to make the prediction is $0.1^{100}$.
+	\end{soln}
 	
 	\item (3pts) Using your answers to parts (a)–(c), argue that a drawback of KNN when p is large is that there are very few training observations “near” any given test observation.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	We can write expression for available fraction of observations when $p$ is large as following:$\underset{p \to \infty}{\lim} 0.1^p = 0$, which means, as p goes very large, the fraction of the available observations will we use to make the prediction is very small. Therefore, there are very few training observations “near” any given test observation.
+	\end{soln}
 	
 	\item (3pts) Now suppose that we wish to make a prediction for a test observation by creating a $p$-dimensional hypercube centered around the test observation that contains, on average, 10\% of the training observations. For $p =$1, 2, and 100, what is the length of each side of the hypercube? Comment what happens to the length of the sides as $\lim_{{p \to \infty}}$.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	For $p=1$, the hypercube is just a line segment with length of 0.1 (as shown in part (a)); for $p=2$, the hypercube is a 2D square whose area is 0.1 of the total available observation, herein length for each side is $\sqrt{0.1}$. If we make this statement more general, when feature is $p$, length for each side is $0.1^{\frac{1}{p}}$. When p is large: length = $\lim_{{p \to \infty}} 0.1^{\frac{1}{p}} = 1$\\
+	\end{soln}
 	
 \end{enumerate}
 
