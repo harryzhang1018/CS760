@@ -257,11 +257,17 @@ Suppose we wish to use this data set to make a prediction for $Y$ when $X_{1} = 
 Calculate
 \begin{enumerate}
 	\item (2 pts) Accuracy
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Accuracy = $\frac{TP + TN}{TP + TN + FP + FN} = \frac{8 + 974}{8 + 974 + 16 + 2} = 0.98$
+	\end{soln}
 	\item (2 pts) Precision
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Precision = $\frac{TP}{TP + FP} = \frac{8}{8 + 16} = 0.33$
+	\end{soln}
 	\item (2 pts) Recall
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Recall = $\frac{TP}{TP + FN} = \frac{8}{8 + 2} = 0.8$
+	\end{soln}
 \end{enumerate}
 
 
@@ -288,11 +294,21 @@ Confidence positive & Correct class \\ \hline
 \begin{enumerate}
 	\item (6pts) Draw a ROC curve based on the above table.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}
+	See the Fig.~\ref{fig:roc}.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{images/ROC_q1_5.png}
+		\caption{ROC curve}
+		\label{fig:roc}
+	\end{figure}
+	\end{soln}
 	
 	\item (3pts) (Real-world open question) Suppose you want to choose a threshold parameter so that mails with confidence positives above the threshold can be classified as spam. Which value will you choose? Justify your answer based on the ROC curve.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	I prefer to choose the threshold as 0.3 because this maximizes the true positive rate (TPR) while minimizing the false positive rate (FPR).This means I want as much true spam detection as possible, while I don't care too much about the false spam detection (if someone tries to reach out for important things, I can get this information through phone call or text or other ways).
+	\end{soln}
 \end{enumerate}
 
 \item (8 pts) In this problem, we will walk through a single step of the gradient descent algorithm for logistic regression. As a reminder,
@@ -306,7 +322,17 @@ $$\text{The single update step } \theta^{t+1} = \theta^{t} - \eta \nabla_{\theta
 \begin{enumerate}
 	\item (4 pts) Compute the first gradient $\nabla_{\theta} L(f(x;\theta), y)$.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Noticed: $\frac{d \sigma(z)}{dz} = \sigma(z)(1-\sigma(z))$\\
+	\begin{align*}
+	\nabla_{\theta} L(f(x;\theta), y) &= - [ \frac{\partial }{\partial \theta } y \cdot log \sigma(\theta^T x) +  \frac{\partial }{\partial \theta } (1-y) log (1 - \sigma(\theta^T x))]\\
+	&= - [ \frac{y}{\sigma(\theta^T x)} \cdot \frac{\partial }{\partial \theta } \sigma(\theta^T x) +  \frac{1-y}{1 - \sigma(\theta^T x)} \cdot \frac{\partial }{\partial \theta } (1 - \sigma(\theta^T x))]\\
+	&= - [ \frac{y}{\sigma(\theta^T x)} \cdot \sigma(\theta^T x)(1-\sigma(\theta^T x)) \cdot \frac{\partial }{\partial \theta } \theta^T x +  \frac{y-1}{1 - \sigma(\theta^T x)} \cdot \sigma(\theta^T x)(1-\sigma(\theta^T x)) \cdot \frac{\partial }{\partial \theta } \theta^T x]\\
+	&= - [ y(1-\sigma(\theta^T x)) \cdot x +  (y-1) \sigma(\theta^T x) \cdot x]\\
+	&= - [ y (1- \hat{y}) \cdot x + (y-1) \hat{y} \cdot x]\\
+	&= - (y - \hat{y}) \cdot x = ( \sigma(\theta^T x) - y) \cdot x
+	\end{align*}
+	\end{soln}
 	
 	\item (4 pts)
  Now assume a two dimensional input. After including a bias parameter for the first dimension, we will have $\theta\in\mathbb{R}^3$.
@@ -315,7 +341,18 @@ $$ \text{Learning rate }\eta=0.1$$
 $$ \text{data example : } x=[1, 3, 2], y=1$$
 Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	From part (a), we know that $\nabla_{\theta} L(f(x;\theta), y) = ( \sigma(\theta^T x) - y) \cdot x$. Therefore, we can compute the updated parameter vector $\theta^{1}$ from the single update step as following:\\
+	\begin{align*}
+	\theta^{1} &= \theta^{0} - \eta \nabla_{\theta} L(f(x;\theta), y)\\
+	&= \theta^0 - \eta (y - \sigma(\theta^T x)) \cdot x\\
+	&= [0, 0, 0] - 0.1 ( \sigma([0, 0, 0]^T [1, 3, 2])-1) \cdot [1, 3, 2]\\
+	&= [0, 0, 0] - 0.1 ( \sigma(0)-1) \cdot [1, 3, 2]\\
+	&= [0, 0, 0] - 0.1 ( 0.5- 1 ) \cdot [1, 3, 2]\\
+	&= [0, 0, 0] + 0.1 \cdot 0.5 \cdot [1, 3, 2]\\
+	&= [0.05, 0.15, 0.1]\\
+	\end{align*}
+	\end{soln}
 \end{enumerate}
 \end{enumerate}
 
@@ -326,7 +363,15 @@ Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	That is, you should produce test points whose first feature goes over $-2, -1.9, -1.8, \ldots, 1.9, 2$, so does the second feature independent of the first feature.
 	You should overlay the training set in the plot, just make sure we can tell which points are training, which are grid.
 	
-	The expected figure looks like this.
+	\begin{soln}
+	See the Fig.~\ref{fig:1nn}.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{images/D2zSplitPlot.png}
+		\caption{1NN}
+		\label{fig:1nn}
+	\end{figure}
+	\end{soln}
 	% \begin{figure}[h]
 	% 	\centering
 	% 	\includegraphics[width=5cm]{implementation1_expected_result.png}
@@ -356,14 +401,58 @@ Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	
 	\item (8 pts) Implement 1NN, Run 5-fold cross validation. Report accuracy, precision, and recall in each fold.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Please refer the Table.~\ref{tab:1nn} below for accuracy, precision, and recall in each fold.\\
+	\begin{table}
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Fold & Accuracy & Precision & Recall\\
+			\hline
+			1 & 0.825 & 0.654 & 0.817\\
+			2 & 0.853 & 0.686 & 0.866\\
+			3 & 0.862 & 0.721 & 0.838\\
+			4 & 0.851 & 0.716 & 0.816\\
+			5 & 0.775 & 0.606 & 0.758\\
+			\hline
+		\end{tabular}
+		\caption{1NN for Cross Validation}
+		\label{tab:1nn}
+	\end{table}
+	\end{soln}
 	
 	\item (12 pts) Implement logistic regression (from scratch). Use gradient descent (refer to question 6 from part 1) to find the optimal parameters. You may need to tune your learning rate to find a good optimum. Run 5-fold cross validation. Report accuracy, precision, and recall in each fold.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	Please refer the Table.~\ref{tab:lr} below for accuracy, precision, and recall in each fold.
+	\begin{table}
+		\centering
+		\begin{tabular}{|c|c|c|c|}
+			\hline
+			Fold & Accuracy & Precision & Recall\\
+			\hline
+			1 & 0.909 & 0.885 & 0.782\\
+			2 & 0.893 & 0.829 & 0.772\\
+			3 & 0.876 & 0.896 & 0.637\\
+			4 & 0.876 & 0.832 & 0.724\\
+			5 & 0.846 & 0.777 & 0.696\\
+			\hline
+		\end{tabular}
+		\caption{Logistic Regression for Cross Validation}
+		\label{tab:lr}
+	\end{table}
+	\end{soln}
 	
 	\item (10 pts) Run 5-fold cross validation with kNN varying k (k=1, 3, 5, 7, 10). Plot the average accuracy versus k, and list the average accuracy of each case. \\
-	Expected figure looks like this.
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{images/accuracyK.png}
+		\caption{Accuracy vs. k} 
+		\label{fig:knn}
+	\end{figure}
+	\begin{soln}\\
+	See Fig.~\ref{fig:knn} for the plot of the average accuracy versus k.\\
+	\end{soln}
 	% \begin{figure}[h]
 	% 	\centering
 	% 	\includegraphics[width=8cm]{knn.png}
@@ -371,7 +460,7 @@ Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	
 	% \begin{soln}  Solution goes here. \end{soln}
 	
-	% \item (10 pts) Use a single training/test setting. Train kNN (k=5) and logistic regression on the training set, and draw ROC curves based on the test set. \\
+	\item (10 pts) Use a single training/test setting. Train kNN (k=5) and logistic regression on the training set, and draw ROC curves based on the test set. \\
 	% Expected figure looks like this.
 	% \begin{figure}[h]
 	% 	\centering
