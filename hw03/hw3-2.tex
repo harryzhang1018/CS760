@@ -238,7 +238,7 @@ Suppose we wish to use this data set to make a prediction for $Y$ when $X_{1} = 
 	\item (3pts) Now suppose that we wish to make a prediction for a test observation by creating a $p$-dimensional hypercube centered around the test observation that contains, on average, 10\% of the training observations. For $p =$1, 2, and 100, what is the length of each side of the hypercube? Comment what happens to the length of the sides as $\lim_{{p \to \infty}}$.
 	
 	\begin{soln}\\
-	For $p=1$, the hypercube is just a line segment with length of 0.1 (as shown in part (a)); for $p=2$, the hypercube is a 2D square whose area is 0.1 of the total available observation, herein length for each side is $\sqrt{0.1}$. If we make this statement more general, when feature is $p$, length for each side is $0.1^{\frac{1}{p}}$. When p is large: length = $\lim_{{p \to \infty}} 0.1^{\frac{1}{p}} = 1$\\
+	For $p=1$, the hypercube is just a line segment with length of 0.1 (as shown in part (a)); for $p=2$, the hypercube is a 2D square whose area is 0.1 of the total available observation, herein length for each side is $\sqrt{0.1}$. If we make this statement more general, when feature is $p$, length for each side is $0.1^{\frac{1}{p}}$. When p is large: length = $\lim_{{p \to \infty}} 0.1^{\frac{1}{p}} = 1$. Intuitively, it means to get 10\% of data when $p$ is approaching infinity, we need to include all training set.\\
 	\end{soln}
 	
 \end{enumerate}
@@ -424,7 +424,7 @@ Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	\item (12 pts) Implement logistic regression (from scratch). Use gradient descent (refer to question 6 from part 1) to find the optimal parameters. You may need to tune your learning rate to find a good optimum. Run 5-fold cross validation. Report accuracy, precision, and recall in each fold.
 	
 	\begin{soln}\\
-	Please refer the Table.~\ref{tab:lr} below for accuracy, precision, and recall in each fold.
+	Please refer the Table.~\ref{tab:lr} below for accuracy, precision, and recall in each fold. The learning rate I used is 0.01; and number of iterations is 1000.
 	\begin{table}
 		\centering
 		\begin{tabular}{|c|c|c|c|}
@@ -468,7 +468,15 @@ Compute the updated parameter vector $\theta^{1}$ from the single update step.
 	% \end{figure}
 	Note that the logistic regression results may differ.
 	
-	\begin{soln}  Solution goes here. \end{soln}
+	\begin{soln}\\
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.5\linewidth]{images/ROC_Q2_5.png}
+		\caption{ROC curve for 5-NN}
+		\label{fig:rocq25}
+	\end{figure}
+	See Fig~\ref{fig:rocq25} for the ROC curve for 5-NN and for Logistic Regression. For logistic regression, learning rate I used is 0.0001 and number of iteration is 2000 (different from what I got in part 3 because this setup could provide better ROC curve)\\
+	\end{soln}
 	
 \end{enumerate}
 \bibliographystyle{apalike}
