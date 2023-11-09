@@ -63,7 +63,7 @@ def dro(data, d):
 # # Generate a 2D dataset for testing
 # np.random.seed(0)
 print("For 2D dataset:")
-data_2d = np.loadtxt('./hw04/data2D.csv', delimiter=',')
+data_2d = np.loadtxt('./hw05/data2D.csv', delimiter=',')
 
 # Buggy PCA
 U_buggy, Vt_buggy, recon_buggy = buggy_pca(data_2d,1)
@@ -108,7 +108,7 @@ plt.legend()
 plt.show()
 
 ### doing the 1000D dataset
-data_1000d = np.loadtxt('./hw04/data1000D.csv', delimiter=',')
+data_1000d = np.loadtxt('./hw05/data1000D.csv', delimiter=',')
 # X_1000d = data_1000d - np.mean(data_1000d, axis=0)
 ## implement SVD and find the number of non zero singular values
 U, S, Vt = np.linalg.svd(data_1000d, full_matrices=False)
