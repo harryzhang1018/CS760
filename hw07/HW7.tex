@@ -1,0 +1,405 @@
+\documentclass[a4paper]{article}
+\usepackage{tikz}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{natbib}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{paralist}
+\usepackage{epstopdf}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyvrb}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{float}
+\usepackage{paralist}
+%\usepackage[svgname]{xcolor}
+\usepackage{enumerate}
+\usepackage{array}
+\usepackage{times}
+\usepackage{url}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{environ}
+\usepackage{times}
+\usepackage{textcomp}
+\usepackage{caption}
+\usepackage{bbm}
+
+
+
+\urlstyle{rm}
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[]
+\newtheorem{conjecture}{Conjecture}[]
+\newtheorem{example}{Example}[]
+\newtheorem{theorem}{Theorem}[]
+\newtheorem{lemma}{Lemma}
+\newtheorem{proposition}{Proposition}
+\newtheorem{corollary}{Corollary}
+
+\floatname{algorithm}{Procedure}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+\newcommand{\abs}[1]{\lvert#1\rvert}
+\newcommand{\norm}[1]{\lVert#1\rVert}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\Nat}{\mathbb{N}}
+\newcommand{\br}[1]{\{#1\}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\definecolor{C0}{HTML}{1F77B4}
+\definecolor{C1}{HTML}{FF7F0E}
+\definecolor{C2}{HTML}{2ca02c}
+\definecolor{C3}{HTML}{d62728}
+\definecolor{C4}{HTML}{9467bd}
+\definecolor{C5}{HTML}{8c564b}
+\definecolor{C6}{HTML}{e377c2}
+\definecolor{C7}{HTML}{7F7F7F}
+\definecolor{C8}{HTML}{bcbd22}
+\definecolor{C9}{HTML}{17BECF}
+
+\newcommand{\Var}{\mathrm{Var}}
+\newcommand{\Cov}{\mathrm{Cov}}
+\newcommand{\sgn}{\mathrm{sgn}}
+
+\newcommand{\vc}[1]{\boldsymbol{#1}}
+\newcommand{\xv}{\vc{x}}
+\newcommand{\Sigmav}{\vc{\Sigma}}
+\newcommand{\alphav}{\vc{\alpha}}
+\newcommand{\muv}{\vc{\mu}}
+
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+
+\def\x{\mathbf x}
+\def\y{\mathbf y}
+\def\w{\mathbf w}
+\def\v{\mathbf v}
+\def\E{\mathbb E}
+\def\R{\mathbb R}
+\def\V{\mathbb V}
+\def\ind{\mathbbm 1}
+
+% TO SHOW SOLUTIONS, include following (else comment out):
+\newenvironment{soln}{
+    \leavevmode\color{blue}\ignorespaces
+}{}
+
+
+\hypersetup{
+%    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}
+
+\geometry{
+  top=1in,            % <-- you want to adjust this
+  inner=1in,
+  outer=1in,
+  bottom=1in,
+  headheight=3em,       % <-- and this
+  headsep=2em,          % <-- and this
+  footskip=3em,
+}
+
+
+\pagestyle{fancyplain}
+\lhead{\fancyplain{}{Homework 7}}
+\rhead{\fancyplain{}{CS 760 Machine Learning}}
+\cfoot{\thepage}
+
+\title{\textsc{Homework 7}} % Title
+
+%%% NOTE:  Replace 'NAME HERE' etc., and delete any "\red{}" wrappers (so it won't show up as red)
+
+\author{
+Harry Zhang \\
+hzhang699\\
+} 
+
+\date{}
+
+\begin{document}
+
+\maketitle 
+
+\textbf{Instructions:}
+Use this latex file as a template to develop your homework. Please submit a single pdf to Canvas. Late submissions may not be accepted. You can choose any programming language (i.e. python, R, or MATLAB). Please check Piazza for updates about the homework.
+\vspace{0.1in}
+
+\section{Getting Started}
+Before you can complete the exercises, you will need to setup the code.
+%
+In the zip file given with the assignment, there is all of the starter code you will need to complete it.
+%
+You will need to install the requirements.txt where the typical method is through python's virtual environments.
+%
+Example commands to do this on Linux/Mac are:
+\begin{verbatim}
+    python -m venv .venv
+    source .venv/bin/activate
+    pip install -r requirements.txt 
+\end{verbatim}
+%
+
+For Windows or more explanation see here: \url{https://docs.python.org/3/tutorial/venv.html}
+
+\section{Value Iteration [40 pts]}
+
+The \verb|ValueIteration| class in \verb|solvers/Value_Iteration.py| contains the implementation for the value iteration algorithm. Complete the \verb|train_episode| and \verb|create_greedy_policy| methods.
+
+\subsubsection*{Submission [6 pts each + 10 pts for code submission]}
+
+Submit a screenshot containing your \verb|train_episode| and \verb|create_greedy_policy| methods (10 points). 
+
+\vspace{5mm}
+For these 5 commands. Report the episode it converges at and the reward it achieves. See examples for what we expect. An example is: \begin{verbatim}
+    python run.py -s vi -d Gridworld -e 200 -g 0.2
+\end{verbatim}
+Converges to a reward of \verb|___| in \verb|___| episodes.
+
+\red{Note: For FrozenLake the rewards go to many decimal places. Report convergence to the nearest 0.0001.}
+
+\vspace{8mm}
+
+Submission Commands:
+\begin{enumerate} 
+    \item   python run.py -s vi -d Gridworld -e 200 -g 0.05
+    \item   python run.py -s vi -d Gridworld -e 200 -g 0.2
+    \item  python run.py -s vi -d FrozenLake-v0 -e 500 -g 0.5   
+    \item  python run.py -s vi -d FrozenLake-v0 -e 500 -g 0.9  
+    \item python run.py -s vi -d FrozenLake-v0 -e 500 -g 0.75 
+\end{enumerate}
+
+\begin{soln}
+    \begin{enumerate}
+        \item Converges to a reward of -14.51 in 3 episodes.
+        \item Converges to a reward of -16.16 in 3 episodes.
+        \item Converges to a reward of 0.6374 in 10 episodes.
+        \item Converges to a reward of 2.1761 in 57 episodes.
+        \item Converges to a reward of 1.1316 in 21 episodes.
+    \end{enumerate}
+\end{soln}
+
+
+
+\section{Q-learning [40 pts]}
+
+The \verb|QLearning| class in \verb|solvers\Q_Learning.py| contains the implementation for the Q-learning algorithm. Complete the \verb|train_episode|, \verb|create_greedy_policy|,  and \verb|make_epsilon_greedy_policy| methods.
+
+\subsubsection*{Submission [10 pts each + 10 pts for code submission]}
+
+Submit a screenshot containing your \verb|train_episode|, \verb|create_greedy_policy| and 
+
+\verb|make_epsilon_greedy_policy| methods (10 points). 
+
+Report the reward for these 3 commands with your implementation (10 points each) by submitting the "Episode Reward over Time" plot for each command:
+
+\begin{enumerate}
+    \item  python run.py -s ql -d CliffWalking -e 100 -a 0.2 -g 0.9 -p 0.1 
+    \item  python run.py -s ql -d CliffWalking -e 100 -a 0.8 -g 0.5 -p 0.1 
+    \item  python run.py -s ql -d CliffWalking -e 500 -a 0.6 -g 0.8 -p 0.1
+\end{enumerate}
+
+For reference, command 1 should end with a reward around -60, command 2 should end with a reward around -25 and command 3 should end with a reward around -40.
+
+\begin{soln}
+    \begin{enumerate}
+        \item Ended around -60 reward.
+        \item Ended around -30 reward.
+        \item Ended around -40 reward.
+    \end{enumerate}
+    The following figures are the code screenshots as in Fig.~\ref{fig:q31}, \ref{fig:q32}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{q3code1.png}
+        \caption{Code for train\_episode}
+        \label{fig:q31}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{q3code2.png}
+        \caption{Code for create\_greedy\_policy and make\_epsilon\_greedy\_policy}
+        \label{fig:q32}
+    \end{figure}
+    The following are the plots for reward vs episode as in Fig.~\ref{fig:q3a}, \ref{fig:q3b}, \ref{fig:q3c}.
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{3_1.png}
+        \caption{Result 1}
+        \label{fig:q3a}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{3_2.png}
+        \caption{Result 2}
+        \label{fig:q3b}
+    \end{figure}
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{3_3.png}
+        \caption{Result 3}
+        \label{fig:q3c}
+    \end{figure}
+\end{soln}
+
+
+\section{Q-learning [20 pts]}
+For this question you can either reimplement your Q-learning code or use your previous implementation. You will be using a custom made MDP for analysis. Consider the following Markov Decision Process.
+It has two states $s$. It has two actions $a$: move and stay. The state transition is deterministic: ``move'' moves to the other state, while ``stay' stays at the current state. The reward $r$ is 0 for move,  1 for stay. There is a discounting factor $\gamma=0.8$.
+\\
+
+\begin{tikzpicture}
+    \tikzstyle{n} = [very thick,circle,inner sep=0mm,minimum width=6mm]
+    \tikzstyle{a} = [thick,>=latex,->]
+    \def\dx{1.2}
+    \def\dy{-1.2}
+    \node[n,C1,draw=C1] (2) at (\dy,0) {\textbf{\textsf{A}}};
+    \node[n,C2,draw=C2] (1) at (\dx,0) {\textbf{\textsf{B}}};
+    \path[a]
+    (2) edge [loop below] node {+1}(2)
+    (1) edge [loop below] node {+1}(1)
+    (2) edge [bend right=20] node[below] {0}(1)
+    (1) edge [bend right=20] node[above] {0}(2);
+\end{tikzpicture}
+
+The reinforcement learning agent performs Q-learning.  Recall the $Q$ table has entries $Q(s,a)$. The $Q$ table is initialized with all zeros. The agent starts in state $s_1=A$. In any state $s_t$, the agent chooses the action $a_t$ according to a behavior policy $a_t = \pi_B(s_t)$. Upon experiencing the next state and reward $s_{t+1}, r_t$ the update is:
+$$Q(s_t, a_t) \Leftarrow (1-\alpha) Q(s_t, a_t) + \alpha \left( r_t + \gamma \max_{a'} Q(s_{t+1}, a') \right).$$
+Let the step size parameter $\alpha=0.5$.
+
+\begin{enumerate}
+\item (5 pts) Run Q-learning for 200 steps with a deterministic greedy behavior policy: at each state $s_t$ use the best action $a_t \in \argmax_a Q(s_t,a)$ indicated by the current action-value table. If there is a tie, prefer move. Show the action-value table at the end.
+\begin{soln}
+    The action-value table at the end is shown in Table~\ref{tab:q41}.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            State & Move & Stay\\
+            \hline
+            A & 0.0 & 0.0\\
+            \hline
+            B & 0.0 & 0.0\\
+            \hline
+        \end{tabular}
+        \caption{Action-value table}
+        \label{tab:q41}
+    \end{table}
+\end{soln}
+
+\item (5 pts) Reset and repeat the above, but with an $\epsilon$-greedy behavior policy: at each state $s_t$, with probability $1-\epsilon$ choose what the current Q table says is the best action: $\argmax_a Q(s_t,a)$; Break ties arbitrarily. Otherwise, (with probability $\epsilon$) uniformly chooses between move and stay (move or stay both with 1/2 probability). Use $\epsilon=0.5$.
+\begin{soln}
+    The action-value table at the end is shown in Table~\ref{tab:q42}.
+    \begin{table}[H]
+        \centering
+        \begin{tabular}{|c|c|c|}
+            \hline
+            State & Move & Stay\\
+            \hline
+            A & 2.5 & 4.5\\
+            \hline
+            B & 1.8 & 4.0\\
+            \hline
+        \end{tabular}
+        \caption{Action-value table}
+        \label{tab:q42}
+    \end{table}
+\end{soln}
+\item (5 pts) Without doing simulation, use Bellman equation to derive the true action-value table induced by the MDP. That is, calculate the true optimal action-values by hand.
+\begin{soln}
+\begin{align*}
+    Q(s, a) &= \sum_{s'}^{}\sum_{r}^{} p(s',r | s, a)[r+\gamma v_\pi (s')]\\
+            &=  \sum_{s'}^{}\sum_{r}^{} p(s',r | s, a)[r+\gamma \max Q(s,:)]\\
+    Q(A, move) &= 1.0(0+0.8)= 0.8\\
+    Q(A, stay) &= 1.0(1+0.8)= 1.8\\
+    Q(B, move) &= 1.0(0+0.8)= 0.8\\
+    Q(B, stay) &= 1.0(1+0.8)= 1.8\\
+\end{align*}
+\end{soln}
+
+\item (5 pts) To the extent that you obtain different solutions for each question, explain why the action-values  differ.
+\begin{soln}\\
+    The action-values differ because the (1) use special split tie rule and (2) introduce randomness in the policy.
+\end{soln}
+\section{A2C (Extra credit)}
+\subsection{Implementation}
+
+You will implement a function for the A2C algorithm in solvers/A2C.py.
+% 
+Skeleton code for the algorithm is already provided in the relevant python files.
+% 
+Specifically, you will need to complete \verb|train| for A2C.
+% 
+To test your implementation, run:
+% 
+\begin{verbatim}
+  python run.py -s a2c -t 1000 -d CartPole-v1 -G 200 
+  
+  -e 2000 -a\ 0.001 -g 0.95 -l [32]
+\end{verbatim}
+% 
+This command will train a neural network policy with A2C on the CartPole domain for 2000 episodes.
+% 
+The policy has a single hidden layer with 32 hidden units in that layer.
+\subsubsection*{Submission}
+% 
+
+For submission, plot the final reward/episode for 5 different values of either alpha or gamma. Then include a short (\verb|<5 sentence|) analysis on the impact that alpha/gamma had for the reward in this domain.
+
+\begin{soln}
+    The results from changing $\alpha$ parameters are shown in Fig.~\ref{fig:q51},~\ref{fig:q52},~\ref{fig:q53},~\ref{fig:q54},~\ref{fig:q55}. By tuning the values of $\alpha$, we can see that reward won't converge into good values if the learning rate, $\alpha$, is too large or too small. The best value of $\alpha$ is 0.00075 as shown in Fig.~\ref{fig:q55}.\\
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{5_1_b.png}
+        \caption{Reward vs Episode for $\alpha = 0.001 \; \gamma = 0.95$}
+        \label{fig:q51}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{5_2_b.png}
+        \caption{Reward vs Episode for $\alpha = 0.01 \; \gamma = 0.95$}
+        \label{fig:q52}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{5_3_b.png}
+        \caption{Reward vs Episode for $\alpha = 0.0001 \; \gamma = 0.95$}
+        \label{fig:q53}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{5_4_b.png}
+        \caption{Reward vs Episode for $\alpha = 0.0005 \; \gamma = 0.95$}
+        \label{fig:q54}
+    \end{figure}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{5_5_b.png}
+        \caption{Reward vs Episode for $\alpha = 0.00075 \; \gamma = 0.95$}
+        \label{fig:q55}
+    \end{figure}
+
+\end{soln}
+
+\end{enumerate}
+
+\end{document}
